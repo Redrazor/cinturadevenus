@@ -25,6 +25,8 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+
+	'mongo': 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/',
 });
 
 // Load your project's Models
@@ -41,7 +43,7 @@ keystone.set('locals', {
 });
 
 //Load base URL
-keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://cintura-de-venus.pt/' : 'http://localhost:3000/');
+keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://cinturadevenus.pt/' : 'http://localhost:3000/');
 keystone.set('siteTitle', 'Cintura de Venus');
 
 // Load your project's Routes
