@@ -1,0 +1,124 @@
+
+
+block sidebar
+    .col-sm-3
+        .widget.about-me
+            h2 Sobre mim
+            .widget-content
+                img(src=mainImgs._.heroImage.fit(300,300), id="about-me")
+                .text
+                    p.
+                        Quisque felis quam, sollicitudin in justo non, maximus sagittis ipsum.
+                        Aenean sodales tempus turpis, ut pulvinar orci sagittis a.
+                    a(href="/about-me") Descobre mais sobre mim
+        //- .list-group(style='margin-top: 70px;')
+            a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
+            each cat in data.categories
+                a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+        .widget.shares
+            h2 Segue-nos
+            .widget-content
+                ul.box-share
+                    li: a(href="http://www.facebook.com")
+                        i.fa.fa-facebook
+                        | Facebook
+                    li: a(href="http://www.twitter.com")
+                        i.fa.fa-twitter
+                        | Twitter
+                    li: a(href="https://pt.pinterest.com/anapalma758/")
+                        i.fa.fa-pinterest
+                        | Pinterest
+        .widget.pinterest
+            h2 Pinterest
+            .widget-content
+                a(data-pin-do="embedBoard", data-pin-lang="pt", data-pin-board-width="300", data-pin-scale-height="503", data-pin-scale-width="144", href="https://pt.pinterest.com/anapalma758/venus-girls/")
+        .widget.labels
+            h2 Etiquetas
+            .widget-content
+                .label-container
+                    .label
+                        a(href="#") Fashion
+                    .label
+                        a(href="#") Food
+                    .label
+                        a(href="#") Women
+        .widget.recent-posts
+            h2 Posts Recentes
+            .widget-content
+                .side-post
+                    .side-image
+                        a(href="/to-post")
+                            img(src=mainImgs._.heroImage.fit(150,100))
+
+                    .side-post-text
+                        h4: a(href="/to-post") Another Post Title
+                        .side-post-meta
+                            | 04 Mar 2016
+
+        .widget.archive
+            h2 Arquivo
+            .widget-content
+                ul.hierarchy
+                    li
+                        span.toggle
+                            .zippy.toggle-open
+                                i.fa.fa-caret-down
+                                a(href="/filter-by-year")
+                                    | 2015
+                                    span.post-count
+                                    |  (5)
+                                ul.hierarchy
+                                    li
+                                        span.toggle
+                                            .zippy.toggle-open
+                                                i.fa.fa-caret-down
+                                                a(href="/filter-by-month")
+                                                    | Março
+                                                    span.post-count
+                                                    |  (5)
+                                                ul.hierarchy
+                                                    li
+                                                        .toggle
+                                                            a(href="/filter-by-month")
+                                                                | Post Temp 1
+                                                    li
+                                                        .toggle
+                                                            a(href="/filter-by-month")
+                                                                | Post Temp 2
+                                                    li
+                                                        .toggle
+                                                            a(href="/filter-by-month")
+                                                                | Post Temp 3
+                                                    li
+                                                        .toggle
+                                                            a(href="/filter-by-month")
+                                                                | Post Temp 4
+                                                    li
+                                                        .toggle
+                                                            a(href="/filter-by-month")
+                                                                | Post Temp 5
+
+                                    li
+                                        span.toggle
+                                            .zippy.toggle-close
+                                                i.fa.fa-caret-right
+                                                a(href="/filter-by-month")
+                                                    | Fevereiro
+                                                    span.post-count
+                                                    |  (1)
+                    li
+                        span.toggle
+                            .zippy.toggle-close
+                                i.fa.fa-caret-right
+                                a(href="/filter-by-year")
+                                    | 2014
+                                    span.post-count
+                                    |  (3)
+                    li
+                        span.toggle
+                            .zippy.toggle-close
+                                i.fa.fa-caret-right
+                                a(href="/filter-by-year")
+                                    | 2013
+                                    span.post-count
+                                    |  (1)

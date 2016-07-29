@@ -125,8 +125,10 @@ html
             +flash-messages(messages)
 
             //- The content block should contain the body of your template's content
-            block content
+            .container: .row
+                block content
 
+                include ../includes/sidebar
 
         //- FOOTER
         .container: #footer

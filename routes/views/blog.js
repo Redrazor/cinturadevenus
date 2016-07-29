@@ -13,18 +13,17 @@ exports = module.exports = function (req, res) {
 	};
 	locals.data = {
 		posts: [],
-		categories: [],
-        mainImgs: []
+		categories: []
 	};
 
 	//Load Main Images
-    view.on('init', function (next) {
+    /*view.on('init', function (next) {
 
         keystone.list('Gallery').model.findOne({ key: 'site-images' }).exec(function (err, result) {
             locals.data.mainImgs = result;
             next(err);
         });
-    });
+    });*/
 
 	// Load all categories
 	view.on('init', function (next) {
