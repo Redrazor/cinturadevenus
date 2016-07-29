@@ -1,0 +1,124 @@
+extends ../layouts/default
+
+mixin post(post)
+    article.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+        .post-header
+            if post.categories && post.categories.length
+            span.cat
+                each cat, i in post.categories
+                    a(href='/categories/' + cat.key)= cat.name
+                    if i < post.categories.length - 1
+                        | ,
+            h2: a(href='/post/' + post.slug)= post.title
+            if post.image.exists
+        .post-image
+            a(href='/post/' + post.slug)
+                img(src=post.image.secure_url)
+        .post-entry
+            p!= post.content.brief
+            if post.content.extended
+            p.read-more: a(href='/post/' + post.slug) continuar a lêr
+                i.fa.fa-long-arrow-right
+        .post-meta
+            .comment-count: a(href="/") 8 commentários
+            .post-share
+                a(href="sharer")
+                    .sharebox
+                        i.fa.fa-facebook
+            .meta-date
+                if post.publishedDate
+                    | #{post._.publishedDate.format('Do MMMM, YYYY')}
+
+                if post.author
+                    |  por #{post.author.name.first}
+
+
+block content
+    .container: .row
+        .col-sm-9
+            if filters.category && !data.category
+                h3.text-muted Invalid Category.
+            else
+                if data.posts.results.length
+                    if data.posts.totalPages > 1
+                        //- h4.text-weight-normal Showing
+                            strong #{data.posts.first}
+                            |  to
+                            strong #{data.posts.last}
+                            |  of
+                            strong #{data.posts.total}
+                            |  posts.
+
+
+
+                    else
+                        //- h4.text-weight-normal Showing #{utils.plural(data.posts.results.length, '* post')}.
+                    .blog
+                        each post in data.posts.results
+                            +post(post)
+
+                    if data.posts.totalPages > 1
+                        ul.pagination
+                            if data.posts.previous
+                                li: a(href='?page=' + data.posts.previous): span.glyphicon.glyphicon-chevron-left
+                            else
+                                li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+                            each p, i in data.posts.pages
+                                li(class=data.posts.currentPage == p ? 'active' : null)
+                                    a(href='?page=' + (p == '...' ? (i ? data.posts.totalPages : 1) : p ))= p
+                            if data.posts.next
+                                li: a(href='?page=' + data.posts.next): span.glyphicon.glyphicon-chevron-right
+                            else
+                                li.disabled: a(href='?page=' + data.posts.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+                else
+                    if data.category
+                        h3.text-muted There are no posts in the category #{data.category.name}.
+                    else
+                        h3.text-muted There are no posts yet.
+
+        if data.categories.length
+            .col-sm-3
+                .widget.about-me
+                    h2 Sobre mim
+                    .widget-content
+                        img(src=data.mainImgs._.heroImage.fit(300,300), id="about-me")
+                        .text
+                            p.
+                                Quisque felis quam, sollicitudin in justo non, maximus sagittis ipsum.
+                                Aenean sodales tempus turpis, ut pulvinar orci sagittis a.
+                            a(href="/about-me") Descobre mais sobre mim
+                //- .list-group(style='margin-top: 70px;')
+                    a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
+                    each cat in data.categories
+                        a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+                .widget.shares
+                    h2 Segue-nos
+                    .widget-content
+                        ul.box-share
+                            li: a(href="http://www.facebook.com")
+                                i.fa.fa-facebook
+                                | Facebook
+                            li: a(href="http://www.twitter.com")
+                                i.fa.fa-twitter
+                                | Twitter
+                            li: a(href="https://pt.pinterest.com/anapalma758/")
+                                i.fa.fa-pinterest
+                                | Pinterest
+                .widget.pinterest
+                    h2 Pinterest
+                    .widget-content
+                        a(data-pin-do="embedBoard", data-pin-lang="pt", data-pin-board-width="300", data-pin-scale-height="503", data-pin-scale-width="144", href="https://pt.pinterest.com/anapalma758/venus-girls/")
+                .widget.labels
+                    h2 Etiquetas
+                    .widget-content
+                        .label-container
+                            .label
+                                a(href="#") Fashion
+                            .label
+                                a(href="#") Food
+                            .label
+                                a(href="#") Women
+                .widget.recent-posts
+                    h2 Posts Recentes
+                .widget.archive
+                    h2 Arquivo
