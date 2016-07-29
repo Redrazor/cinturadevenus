@@ -43,7 +43,7 @@ keystone.set('locals', {
 
 //Load base URL
 
-keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://cinturadevenus.pt/' : 'http://localhost:3000/');
+keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'https://cintura-de-venus.herokuapp.com/' : 'http://localhost:3000/');
 
 keystone.set('siteTitle', 'Cintura de Venus');
 
