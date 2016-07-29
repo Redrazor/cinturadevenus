@@ -6163,6 +6163,32 @@ body {
         color: #999;
         font-style: italic;
         font-family: "Open Sans"; }
+    body .widget ul.hierarchy {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      list-style-image: none;
+      border-width: 0; }
+      body .widget ul.hierarchy li {
+        background: none;
+        list-style: none;
+        list-style-image: none;
+        list-style-position: outside;
+        border-width: 0;
+        padding-left: 15px;
+        text-indent: -15px;
+        margin: .25em 0;
+        background-image: none; }
+        body .widget ul.hierarchy li .toggle {
+          cursor: pointer;
+          font-family: Arial,sans-serif; }
+          body .widget ul.hierarchy li .toggle .toggle-open, body .widget ul.hierarchy li .toggle .toggle-close {
+            line-height: 1.8em; }
+            body .widget ul.hierarchy li .toggle .toggle-open a, body .widget ul.hierarchy li .toggle .toggle-close a {
+              text-decoration: none;
+              color: #777777; }
+              body .widget ul.hierarchy li .toggle .toggle-open a:hover, body .widget ul.hierarchy li .toggle .toggle-close a:hover {
+                color: #000000; }
   body #footer p {
     color: #444;
     font-size: 13px;
