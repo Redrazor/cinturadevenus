@@ -30,7 +30,8 @@ mixin post(post)
                     | #{post._.publishedDate.format('Do MMMM, YYYY')}
 
                 if post.author
-                    |  por #{post.author.name.first}
+                    span.author
+                        |  por #{post.author.name.first}
 
 
 block content
@@ -122,12 +123,14 @@ block content
                     h2 Posts Recentes
                     .widget-content
                         .side-post
-                            a(href="/to-post")
-                                .side-image
-                                .side-post-text
-                                    a(href="/to-post")
-                                        h4 Title Holder
-                                        .side-post-meta 04 Mar 2016
+                            .side-image
+                                a(href="/to-post")
+                                    img(src=data.mainImgs._.heroImage.fit(150,100))
+
+                            .side-post-text
+                                h4: a(href="/to-post") Another Post Title
+                                .side-post-meta
+                                    | 04 Mar 2016
 
                 .widget.archive
                     h2 Arquivo
