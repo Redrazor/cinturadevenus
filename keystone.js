@@ -26,7 +26,6 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 
-	'mongo': 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/',
 });
 
 // Load your project's Models
