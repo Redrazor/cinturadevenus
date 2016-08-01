@@ -20,7 +20,7 @@ mixin post(post)
             p.read-more: a(href='/post/' + post.slug) continuar a lêr
                 i.fa.fa-long-arrow-right
         .post-meta
-            .comment-count: a(href="/") 8 commentários
+            .comment-count: a(href="/") #{post.commentCount} commentários
             .post-share
                 a(href="sharer")
                     .sharebox

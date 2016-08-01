@@ -6343,6 +6343,10 @@ body {
     .post-related .post-box .item-related, .post-comments .post-box .item-related {
       width: 244px;
       margin-right: 19px; }
+      .post-related .post-box .item-related img, .post-comments .post-box .item-related img {
+        margin-bottom: 6px;
+        width: 100%;
+        height: auto; }
       .post-related .post-box .item-related h3 a, .post-comments .post-box .item-related h3 a {
         font-size: 14px;
         text-transform: uppercase;
@@ -6380,7 +6384,7 @@ body {
         .post-related .comments ol li.comment .comment-block, .post-comments .comments ol li.comment .comment-block {
           margin-left: 80px;
           position: relative; }
-          .post-related .comments ol li.comment .comment-block .comment-header .cite.user a, .post-comments .comments ol li.comment .comment-block .comment-header .cite.user a {
+          .post-related .comments ol li.comment .comment-block .comment-header cite.user a, .post-comments .comments ol li.comment .comment-block .comment-header cite.user a {
             display: block;
             font-size: 14px;
             text-transform: uppercase;
@@ -6405,3 +6409,50 @@ body {
         .post-related .comments ol li.comment .comment-replies, .post-comments .comments ol li.comment .comment-replies {
           margin-left: 40px;
           margin-top: 20px; }
+  .post-related .reply-box, .post-comments .reply-box {
+    margin-top: 5px; }
+    .post-related .reply-box .holder, .post-comments .reply-box .holder {
+      background-color: #fff;
+      border: 1px solid #e5e5e5;
+      border-bottom: 1px solid #eee;
+      padding: 18px 22px 10px 22px; }
+      .post-related .reply-box .holder form, .post-comments .reply-box .holder form {
+        text-align: center; }
+        .post-related .reply-box .holder form textarea, .post-comments .reply-box .holder form textarea {
+          margin-top: 15px;
+          width: 560px;
+          height: 100px; }
+        .post-related .reply-box .holder form .reply-info, .post-comments .reply-box .holder form .reply-info {
+          margin-bottom: 15px; }
+          .post-related .reply-box .holder form .reply-info button.signout, .post-comments .reply-box .holder form .reply-info button.signout {
+            float: right;
+            cursor: pointer; }
+        .post-related .reply-box .holder form .captcha-box, .post-comments .reply-box .holder form .captcha-box {
+          position: relative;
+          width: 100%;
+          background-color: #f5f5f5;
+          padding: 10px 10px 4px 10px;
+          clear: both; }
+          .post-related .reply-box .holder form .captcha-box .g-recaptcha, .post-comments .reply-box .holder form .captcha-box .g-recaptcha {
+            text-align: center;
+            margin: 15px auto;
+            display: inline-block; }
+          .post-related .reply-box .holder form .captcha-box button, .post-comments .reply-box .holder form .captcha-box button {
+            display: inline-block;
+            padding-right: 5px;
+            padding-top: 5px;
+            float: right;
+            font-size: 11px;
+            background-color: #000;
+            color: #FFF;
+            padding: 3px 6px 5px 6px;
+            border-radius: 2px;
+            margin-top: 35px;
+            font-family: "Lato";
+            border: none;
+            cursor: pointer; }
+            .post-related .reply-box .holder form .captcha-box button[disabled='disabled'], .post-comments .reply-box .holder form .captcha-box button[disabled='disabled'] {
+              background-color: #aaa;
+              color: #FFF; }
+            .post-related .reply-box .holder form .captcha-box button:hover, .post-comments .reply-box .holder form .captcha-box button:hover {
+              background-color: #aaa; }

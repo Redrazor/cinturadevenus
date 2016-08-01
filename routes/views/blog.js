@@ -87,6 +87,33 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
+	// Load the posts
+	view.on('init', function (next) {
+
+
+		keystone.list('PostComments')
+			.model.find()
+			.where('commentState', 'approved')
+			.where('author').ne(null)
+			.exec(function (err, results) {
+				locals.data.comments = results;
+				next(err);
+		});
+
+		async.each(locals.data.posts, function (post, next) {
+
+			keystone.list('PostComment').model.count().where('post').in([post.id]).exec(function (err, count) {
+				post.commentCount = count;
+				next(err);
+			});
+
+		}, function (err) {
+			next(err);
+		});
+
+
+	});
+
 	// Render the view
 	view.render('blog');
 };

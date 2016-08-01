@@ -17,7 +17,7 @@ var PostComment = new keystone.List('PostComment', {
 PostComment.add({
     author:{ type: Types.Relationship, initial: true, ref: 'User', index: true },
     post:{ type: Types.Relationship, initial:true, ref: 'Post', inde: true },
-    commentState: { type: Types.Select, options: ['published','draft','archived'], default: 'published', index: true},
+    commentState: { type: Types.Select, options: ['approved','pending','refused'], default: 'pending', index: true},
     publishedOn: { type: Types.Date, default: Date.now, noedit:true, index:true }
 });
 
@@ -27,7 +27,7 @@ PostComment.add('Content', {
 
 PostComment.schema.pre('save', function(next){
     this.wasNew = this.isNew;
-    if(!this.isModified('publishedOn') && this.isModified('commentState') && this.commentState === 'published'){
+    if(!this.isModified('publishedOn') && this.isModified('commentState') && this.commentState === 'approved'){
         this.publishedOn = new Date();
     }
 

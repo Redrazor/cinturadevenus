@@ -1,5 +1,27 @@
 extends ../layouts/default
 
+
+mixin comment(comment)
+    li.comment
+        .avatar-image-container
+            //- Put in logic for author picture
+            img(src=mainImgs.images[0].secure_url)
+        .comment-block
+            .comment-header
+                cite.user
+                    a(href="#")
+                        | #{comment.author.name.first} #{comment.author.name.last}
+                span.datetime
+                    a(href="#")
+                        | #{comment._.publishedOn.format('MMMM DD, YYYY - HH:mm')}
+            .comment-content
+                p.
+                    !{comment.content}
+            .comment-actions
+
+
+
+
 block content
     .col-sm-8
         article
@@ -64,13 +86,38 @@ block content
                         .item-related
                             if data.post.image.exists
                             a(href="#")
-                                img(src=data.post._.image.fit(150,100))
+                                img(src=data.post.image.secure_url)
                             h3
                                 a(href="#")
                                     | Title Holder
                 .post-comments
                     .post-box
                         h4.post-box-title
-                            | 8 Comments
-                    .comments
+                            | #{data.post.comments.length} Comments
+                    if !data.post.comments
+                        | Nenhum Comentário
+                    else
+                        .comments
+                            ol
+                                each comment in data.post.comments
+                                    +comment(comment)
 
+                        .reply-box
+                            .holder
+                                form(method='post')
+                                    input(type='hidden', name='action', value='comment.create')
+                                    textarea(placeholder="Introduzir Comentário...", name="content")
+                                    .reply-info
+                                        if user
+                                            input(type="hidden", name="user", value=user.id)
+                                            | A Responder como #{user.name.first}
+                                            button.signout
+                                                | Signout
+                                        else
+                                            | Por favor faça login pra poder comentar
+                                    .captcha-box
+                                        if user
+                                            .g-recaptcha(data-sitekey="6LcIfyYTAAAAAJC-NExjh-x-UnXPYfjo8O-fVQ4T")
+                                            - var disabled = user ? '' : {disabled: 'disabled'}
+                                            button(type="submit")&attributes(disabled)
+                                                | Publicar
