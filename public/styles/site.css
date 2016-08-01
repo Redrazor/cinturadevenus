@@ -6286,3 +6286,122 @@ body {
       vertical-align: middle;
       cursor: pointer;
       line-height: 0.1em; }
+
+.blog-pager {
+  clear: both;
+  font-size: 16px;
+  line-height: normal;
+  margin: 0;
+  padding: 10px;
+  font-family: times new roman;
+  background: #f9f9f9;
+  text-align: center;
+  overflow: hidden; }
+  .blog-pager .blog-pager-newer-link {
+    display: inline;
+    float: left;
+    width: 50%;
+    text-align: left;
+    padding: 0; }
+    .blog-pager .blog-pager-newer-link a {
+      text-decoration: none;
+      color: #777777; }
+      .blog-pager .blog-pager-newer-link a:hover {
+        color: #000000; }
+  .blog-pager .blog-pager-older-link {
+    display: inline;
+    float: right;
+    width: 50%;
+    text-align: right;
+    padding: 0; }
+    .blog-pager .blog-pager-older-link a {
+      text-decoration: none;
+      color: #777777; }
+      .blog-pager .blog-pager-older-link a:hover {
+        color: #000000; }
+
+.post-related, .post-comments {
+  overflow: hidden;
+  margin-bottom: 80px;
+  margin-top: 70px; }
+  .post-related .post-box, .post-comments .post-box {
+    text-align: center; }
+    .post-related .post-box .post-box-title, .post-comments .post-box .post-box-title {
+      padding-bottom: 3px;
+      display: inline-block;
+      margin-top: 0;
+      font-family: "Raleway";
+      font-size: 24px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.25;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      color: #222;
+      margin-bottom: 20px; }
+    .post-related .post-box .item-related, .post-comments .post-box .item-related {
+      width: 244px;
+      margin-right: 19px; }
+      .post-related .post-box .item-related h3 a, .post-comments .post-box .item-related h3 a {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #000;
+        display: block;
+        font-weight: bold;
+        color: #222; }
+        .post-related .post-box .item-related h3 a:hover, .post-comments .post-box .item-related h3 a:hover {
+          text-decoration: underline; }
+  .post-related .comments, .post-comments .comments {
+    margin-bottom: 40px;
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 0; }
+    .post-related .comments ol, .post-comments .comments ol {
+      list-style: none; }
+      .post-related .comments ol li.comment, .post-comments .comments ol li.comment {
+        border-bottom: 1px dotted #eee;
+        margin-top: 20px;
+        margin-bottom: 34px;
+        padding-bottom: 40px;
+        list-style: none; }
+        .post-related .comments ol li.comment .avatar-image-container, .post-comments .comments ol li.comment .avatar-image-container {
+          float: left;
+          max-height: 50px;
+          overflow: hidden;
+          width: 50px; }
+          .post-related .comments ol li.comment .avatar-image-container img, .post-comments .comments ol li.comment .avatar-image-container img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            max-width: 50px;
+            max-height: 50px; }
+        .post-related .comments ol li.comment .comment-block, .post-comments .comments ol li.comment .comment-block {
+          margin-left: 80px;
+          position: relative; }
+          .post-related .comments ol li.comment .comment-block .comment-header .cite.user a, .post-comments .comments ol li.comment .comment-block .comment-header .cite.user a {
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            color: #333;
+            font-family: "Open Sans"; }
+          .post-related .comments ol li.comment .comment-block .comment-header span.datetime, .post-comments .comments ol li.comment .comment-block .comment-header span.datetime {
+            font-size: 14px;
+            color: #999;
+            font-style: italic;
+            display: block;
+            margin-bottom: 10px; }
+            .post-related .comments ol li.comment .comment-block .comment-header span.datetime a, .post-comments .comments ol li.comment .comment-block .comment-header span.datetime a {
+              text-decoration: none;
+              color: #777777; }
+              .post-related .comments ol li.comment .comment-block .comment-header span.datetime a:hover, .post-comments .comments ol li.comment .comment-block .comment-header span.datetime a:hover {
+                color: #000000; }
+          .post-related .comments ol li.comment .comment-block .comment-content p, .post-comments .comments ol li.comment .comment-block .comment-content p {
+            font-size: 16px;
+            line-height: 26px; }
+        .post-related .comments ol li.comment .comment-replies, .post-comments .comments ol li.comment .comment-replies {
+          margin-left: 40px;
+          margin-top: 20px; }

@@ -101,3 +101,156 @@
 
   }
 }
+
+.blog-pager {
+  clear: both;
+  font-size: 16px;
+  line-height: normal;
+  margin: 0;
+  padding: 10px;
+  font-family: times new roman;
+  background: #f9f9f9;
+  text-align: center;
+  overflow: hidden;
+
+  .blog-pager-newer-link{
+    display: inline;
+    float: left;
+    width: 50%;
+    text-align: left;
+    padding: 0;
+
+    @include site-links;
+
+  }
+
+  .blog-pager-older-link {
+    display: inline;
+    float: right;
+    width: 50%;
+    text-align: right;
+    padding: 0;
+
+    @include site-links;
+  }
+}
+
+.post-related, .post-comments{
+  overflow: hidden;
+  margin-bottom: 80px;
+  margin-top: 70px;
+
+  .post-box{
+    text-align: center;
+
+    .post-box-title{
+      padding-bottom: 3px;
+      display: inline-block;
+      margin-top: 0;
+      font-family: "Raleway";
+      font-size: 24px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.25;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .item-related{
+      width: 244px;
+      margin-right: 19px;
+      h3{
+        a{
+          font-size: 14px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: #000;
+          display: block;
+          font-weight: bold;
+          color: #222;
+
+          &:hover{
+           text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .comments {
+    margin-bottom: 40px;
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 0;
+
+    ol{
+      list-style: none;
+      li.comment{
+        border-bottom: 1px dotted #eee;
+        margin-top: 20px;
+        margin-bottom: 34px;
+        padding-bottom: 40px;
+        list-style: none;
+
+        .avatar-image-container {
+          float: left;
+          max-height: 50px;
+          overflow: hidden;
+          width: 50px;
+
+          img{
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            max-width: 50px;
+            max-height: 50px;
+          }
+        }
+
+        .comment-block {
+          margin-left: 80px;
+          position: relative;
+
+          .comment-header{
+            .cite.user{
+              a{
+                display: block;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 6px;
+                color: #333;
+                font-family: "Open Sans";
+              }
+            }
+            span.datetime{
+              font-size: 14px;
+              color: #999;
+              font-style: italic;
+              display: block;
+              margin-bottom: 10px;
+
+              @include site-links;
+            }
+          }
+
+          .comment-content{
+            p{
+              font-size: 16px;
+              line-height: 26px;
+            }
+          }
+        }
+
+        .comment-replies {
+          margin-left: 40px;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+

@@ -27,7 +27,50 @@ block content
                                 a(href="https://www.facebook.com")
                                     i.fa.fa-facebook
                                         label.hidden-xs
-                                            Partilha no facebook
+                                            | Partilha no facebook
                             li
+                                a(href="https://www.twitter.com")
+                                    i.fa.fa-twitter
+                                        label.hidden-xs
+                                            | Partilha no Twitter
                             li
+                                a(href="https://www.pinterest.com")
+                                    i.fa.fa-pinterest
+                                        label.hidden-xs
+                                            | Pin no Pinterest
                     .entry-tags
+                        | Tags
+                hr
+
+                .blog-pager
+                    span.blog-pager-newer-link
+                        a(href="")
+                            h4
+                                b
+                                    i.fa.fa-long-arrow-left
+                                    |  História Anterior
+
+
+                    span.blog-pager-older-link
+                        a(href="")
+                            h4
+                                b
+                                    | História Seguinte
+                                    i.fa.fa-long-arrow-right
+                .post-related
+                    .post-box
+                        h4.post-box-title
+                            | Podes também gostar
+                        .item-related
+                            if data.post.image.exists
+                            a(href="#")
+                                img(src=data.post._.image.fit(150,100))
+                            h3
+                                a(href="#")
+                                    | Title Holder
+                .post-comments
+                    .post-box
+                        h4.post-box-title
+                            | 8 Comments
+                    .comments
+
