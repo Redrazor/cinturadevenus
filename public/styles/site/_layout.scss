@@ -98,17 +98,34 @@ body {
       position: absolute;
       right: 66px;
       top: 0;
-      a {
-        color: #343434;
-        font-size: 14px;
-        line-height: 55px;
-        margin-left: 15px;
+        ul{
+          margin-left:0;
+          padding-left:0;
+          li{
+            list-style: none;
+            display: inline;
+            a {
+              color: #343434;
+              font-size: 14px;
+              line-height: 55px;
+              margin-left: 15px;
 
-        &:hover {
-          color: #999999 !important;
+              &:hover {
+                color: #999999 !important;
+              }
+            }
+          }
         }
-      }
+
     }
+
+  }
+
+  li.ks-access{
+    list-style: none;
+    display:inline;
+    margin-right:15px;
+    @include site-links;
 
   }
 
@@ -174,6 +191,7 @@ body {
     }
   }
   .post{
+    margin-bottom:20px;
     .post-image {
       margin-bottom: 18px;
       img {
@@ -240,14 +258,7 @@ body {
           transform: skew(-30deg, 0deg);
         }
 
-        a{
-          text-decoration: none;
-          color: #777777;
-
-          &:hover{
-            color:#000000;
-          }
-        }
+        @include site-links;
 
       }
 
@@ -431,14 +442,9 @@ body {
 
     .side-post {
       overflow: hidden;
-      a {
-        text-decoration: none;
-        color: #777777;
 
-        &:hover {
-          color: #000000;
-        }
-      }
+      @include site-links;
+
       .side-image {
         float: left;
         margin-right: 14px;
@@ -487,14 +493,7 @@ body {
           .toggle-open, .toggle-close{
             line-height: 1.8em;
 
-            a{
-              text-decoration: none;
-              color: #777777;
-
-              &:hover{
-                color: #000000;
-              }
-            }
+            @include site-links;
           }
         }
       }

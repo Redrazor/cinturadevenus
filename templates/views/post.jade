@@ -61,7 +61,13 @@ block content
                                         label.hidden-xs
                                             | Pin no Pinterest
                     .entry-tags
-                        | Tags
+                        strong.tag-heading
+                            i.fa.fa-tag
+                                | Tags:
+                            // - This will have loop for tags
+                        a(href="#", rel="tag") Tag1,
+                        a(href="#", rel="tag") Tag2,
+                        a(href="#", rel="tag") Tag3
                 hr
 
                 .blog-pager
@@ -91,6 +97,7 @@ block content
                                 a(href="#")
                                     | Title Holder
                 .post-comments
+                    a(name="comments")
                     .post-box
                         h4.post-box-title
                             | #{data.post.comments.length} Comments

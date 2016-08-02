@@ -98,7 +98,18 @@
   }
 
   .entry-tags{
+    margin-top: 20px;
+    text-align: center;
 
+    @include site-links;
+    .tag-heading{
+      color: #222;
+      text-transform: uppercase;
+      font-size: 12px;
+      .fa{
+        margin-right: 5px;
+      }
+    }
   }
 }
 

@@ -10,17 +10,17 @@ mixin post(post)
                     if i < post.categories.length - 1
                         | ,
             h2: a(href='/post/' + post.slug)= post.title
-            if post.image.exists
-        .post-image
-            a(href='/post/' + post.slug)
-                img(src=post.image.secure_url)
+        if post.image.exists
+            .post-image
+                a(href='/post/' + post.slug)
+                    img(src=post.image.secure_url)
         .post-entry
             p!= post.content.brief
             if post.content.extended
             p.read-more: a(href='/post/' + post.slug) continuar a lêr
                 i.fa.fa-long-arrow-right
         .post-meta
-            .comment-count: a(href="/") #{post.commentCount} commentários
+            .comment-count: a(href='/post/' + post.slug + '/#comments') #{post.commentCount} commentários
             .post-share
                 a(href="sharer")
                     .sharebox

@@ -94,18 +94,19 @@ html
                                 each link in navLinks
                                     li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
                             ul.nav.navbar-nav.navbar-right
-                                if user
-                                    if user.canAccessKeystone
-                                        li: a(href='/keystone') Open Keystone
-                                        li: a(href='/keystone/signout') Sign Out
-                                    else
-                                        li: a(href='/keystone/signin') Sign In
-
-                                #top-social.widget-content
-                                    a(href="http://www.facebook.com")
-                                        i.fa.fa-facebook
-                                    a(href="hhttp://twitter.com")
-                                        i.fa.fa-twitter
+                                li#top-social.widget-content
+                                    ul
+                                        li: a(href="http://www.facebook.com")
+                                                i.fa.fa-facebook
+                                        li: a(href="hhttp://www.twitter.com")
+                                            i.fa.fa-twitter
+                                        li: a(href="hhttp://www.pinterest.com")
+                                            i.fa.fa-pinterest
+                    if user
+                        if user.canAccessKeystone
+                            ul
+                                li.ks-access: a(href='/keystone') Open Keystone
+                                li.ks-access: a(href='/keystone/signout') Sign Out
         .container
             #logo
                 h1

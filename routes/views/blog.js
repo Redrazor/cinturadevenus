@@ -13,7 +13,8 @@ exports = module.exports = function (req, res) {
 	};
 	locals.data = {
 		posts: [],
-		categories: []
+		categories: [],
+		comments: []
 	};
 
 	//Load Main Images
@@ -87,30 +88,22 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
-	// Load the posts
+	// Count Comments associated with each Post
 	view.on('init', function (next) {
 
-
-		keystone.list('PostComments')
-			.model.find()
-			.where('commentState', 'approved')
-			.where('author').ne(null)
-			.exec(function (err, results) {
-				locals.data.comments = results;
-				next(err);
-		});
-
-		async.each(locals.data.posts, function (post, next) {
-
-			keystone.list('PostComment').model.count().where('post').in([post.id]).exec(function (err, count) {
-				post.commentCount = count;
-				next(err);
-			});
+		async.each(locals.data.posts.results, function (post, next) {
+			keystone.list('PostComment').model.count()
+				.where('commentState', 'approved')
+				.where('author').ne(null)
+				.where('post')
+				.in([post.id]).exec(function (err, count) {
+					post.commentCount = count;
+					next(err);
+				});
 
 		}, function (err) {
-			next(err);
+				next(err);
 		});
-
 
 	});
 

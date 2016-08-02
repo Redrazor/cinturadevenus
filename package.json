@@ -3,12 +3,13 @@
   "version": "0.0.2",
   "private": true,
   "dependencies": {
-    "keystone": "^0.3.19",
     "async": "^1.5.0",
+    "dotenv": "^2.0.0",
+    "keystone": "^0.3.19",
     "lodash": "^4.13.1",
     "node-sass": "^3.3.2",
-    "node-sass-middleware": "^0.9.7", 
-    "dotenv": "^2.0.0"
+    "node-sass-middleware": "^0.9.7",
+    "request": "^2.74.0"
   },
   "devDependencies": {
     "eslint": "^2.12.0",
@@ -22,8 +23,8 @@
     "grunt-node-inspector": "^0.4.1",
     "time-grunt": "^0.3.1",
     "grunt-concurrent": "^0.5.0",
-    "grunt-nodemon": "^0.2.1", 
-    "grunt-sass": "^1.0.0", 
+    "grunt-nodemon": "^0.2.1",
+    "grunt-sass": "^1.0.0",
     "open": "0.0.5"
   },
   "scripts": {
@@ -31,6 +32,4 @@
     "start": "node keystone.js"
   },
   "main": "keystone.js"
-
-  }
-
+}
