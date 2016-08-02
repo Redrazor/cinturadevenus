@@ -14,5 +14,6 @@ PostCategory.add({
 });
 
 PostCategory.relationship({ ref: 'Post', path: 'categories' });
+PostCategory.relationship({ ref: 'Navigation', path: 'categories' });
 
 PostCategory.register();

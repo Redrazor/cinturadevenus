@@ -16,7 +16,7 @@ var PostComment = new keystone.List('PostComment', {
 
 PostComment.add({
     author:{ type: Types.Relationship, initial: true, ref: 'User', index: true },
-    post:{ type: Types.Relationship, initial:true, ref: 'Post', inde: true },
+    post:{ type: Types.Relationship, initial:true, ref: 'Post', index: true },
     commentState: { type: Types.Select, options: ['approved','pending','refused'], default: 'pending', index: true},
     publishedOn: { type: Types.Date, default: Date.now, noedit:true, index:true }
 });
