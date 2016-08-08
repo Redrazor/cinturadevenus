@@ -18,7 +18,7 @@ var Navigation = new keystone.List('Navigation', {
 Navigation.add({
     name: { type: String, required: true },
     active: { type: Types.Boolean, default: true },
-    url: { type: String, index: true, noedit:true },
+    url: { type: Types.Url, index: true, noedit:true },
     itemCategory: { type: Types.Relationship, ref: 'PostCategory', many:true, label: 'Item Category', collapse:true },
     itemPost: { type: Types.Relationship, ref: 'Post', many:true, label: 'Item Post', collapse:true}
 });
@@ -26,24 +26,33 @@ Navigation.add({
 
 Navigation.schema.pre('validate', function(next) {
     console.log('This validates the nav item');
+    if(this.itemCategory != null && this.itemPost != null){
+        if(this.itemCategory.length > 0 && this.itemPost.length > 0) {
+            this.itemPost.remove(this.itemPost);
+        }
+    }
+
+
+
+    //console.log(this.itemCategory.length);
+
     next();
 });
 
 Navigation.schema.post('save', function(){
 
-    //See if any of the relations have values
+    if(this.itemCategory != null && this.itemCategory.length > 0){
+        keystone.list('PostCategory').model.find({_id:this.itemCategory}).exec(function(err, postCats) {
+            console.log(postCats);
+            this.url = postCats[0].name;
+        });
 
-    if(this.itemCategory.length > 0 && this.itemPost.length > 0){
-        return 'ERROR';
+
+    }else if(this.itemPost != null && this.itemPost.length > 0){
+        this.url = this.itemPost;
+        this.url = this.url._.url.format();
     }
 
-
-    console.log(this.itemPost);
-    console.log(this.itemCategory);
-
-    //if they do go get the url path for them and write it on the nav url
-
-    //this.url =
 
 });
 
