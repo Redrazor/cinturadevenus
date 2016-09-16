@@ -14,17 +14,17 @@ exports = module.exports = function (req, res) {
 	locals.data = {
 		posts: [],
 		categories: [],
-        mainImgs: []
+		comments: []
 	};
 
 	//Load Main Images
-    view.on('init', function (next) {
+    /*view.on('init', function (next) {
 
         keystone.list('Gallery').model.findOne({ key: 'site-images' }).exec(function (err, result) {
             locals.data.mainImgs = result;
             next(err);
         });
-    });
+    });*/
 
 	// Load all categories
 	view.on('init', function (next) {
@@ -86,6 +86,25 @@ exports = module.exports = function (req, res) {
 			locals.data.posts = results;
 			next(err);
 		});
+	});
+
+	// Count Comments associated with each Post
+	view.on('init', function (next) {
+
+		async.each(locals.data.posts.results, function (post, next) {
+			keystone.list('PostComment').model.count()
+				.where('commentState', 'approved')
+				.where('author').ne(null)
+				.where('post')
+				.in([post.id]).exec(function (err, count) {
+					post.commentCount = count;
+					next(err);
+				});
+
+		}, function (err) {
+				next(err);
+		});
+
 	});
 
 	// Render the view

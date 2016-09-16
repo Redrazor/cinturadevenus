@@ -1,32 +1,130 @@
 extends ../layouts/default
 
+
+mixin comment(comment)
+    li.comment
+        .avatar-image-container
+            //- Put in logic for author picture
+            img(src=mainImgs.images[0].secure_url)
+        .comment-block
+            .comment-header
+                cite.user
+                    a(href="#")
+                        | #{comment.author.name.first} #{comment.author.name.last}
+                span.datetime
+                    a(href="#")
+                        | #{comment._.publishedOn.format('MMMM DD, YYYY - HH:mm')}
+            .comment-content
+                p.
+                    !{comment.content}
+            .comment-actions
+
+
+
+
 block content
-    .container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+    .col-sm-8
         article
-            p: a(href='/blog') &larr; back to the blog
+            p: a(href='/') &larr; regressar a Home
             hr
             if !data.post
                 h2 Invalid Post.
             else
-                header
+                header.post-header
                     h1= data.post.title
-                    h5 Posted
-                        if data.post.publishedDate
-                            | on #{data.post._.publishedDate.format('MMMM Do, YYYY')}
-                        if data.post.categories && data.post.categories.length
-                            | in
-                            each cat, cat_i in data.post.categories
-                                a(href='/blog/' + cat.key)= cat.name
-                                if cat_i < data.post.categories.length - 1
-                                    | ,
-                                else
-                                    "|"
-                        if data.post.author
-                            | by #{data.post.author.name.first}
-                .post
+                    if data.post.publishedDate
+                        span.date
+                            | em #{data.post._.publishedDate.format('dddd MMM DD, YYYY')}
+                .post-entry
                     if data.post.image.exists
-                        .image-wrap: img(src=data.post._.image.fit(750,450)).img-responsive
-                    != data.post.content.full
-                    a.ion-social-twitter(href="https://twitter.com/intent/tweet?text=#{data.post.title}&url=#{data.post.fullPostUrl}", onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
-                    a.ion-social-facebook(href="https://www.facebook.com/sharer/sharer.php?u=#{data.post.fullPostUrl}", onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
-                    a.ion-social-googleplus(href="https://plus.google.com/share?url=#{data.post.fullPostUrl}", onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;")
+                        .image-wrap: img(src=data.post._.image.fit(770,514)).img-responsive
+                    .post-text!= data.post.content.full
+
+
+                .sharing-area
+                    h3 Partilha este Post
+                    .social-share-buttons
+                        ul
+                            li
+                                a(href="https://www.facebook.com")
+                                    i.fa.fa-facebook
+                                        label.hidden-xs
+                                            | Partilha no facebook
+                            li
+                                a(href="https://www.twitter.com")
+                                    i.fa.fa-twitter
+                                        label.hidden-xs
+                                            | Partilha no Twitter
+                            li
+                                a(href="https://www.pinterest.com")
+                                    i.fa.fa-pinterest
+                                        label.hidden-xs
+                                            | Pin no Pinterest
+                    .entry-tags
+                        strong.tag-heading
+                            i.fa.fa-tag
+                                | Tags:
+                            // - This will have loop for tags
+                        a(href="#", rel="tag") Tag1,
+                        a(href="#", rel="tag") Tag2,
+                        a(href="#", rel="tag") Tag3
+                hr
+
+                .blog-pager
+                    span.blog-pager-newer-link
+                        a(href="")
+                            h4
+                                b
+                                    i.fa.fa-long-arrow-left
+                                    |  História Anterior
+
+
+                    span.blog-pager-older-link
+                        a(href="")
+                            h4
+                                b
+                                    | História Seguinte
+                                    i.fa.fa-long-arrow-right
+                .post-related
+                    .post-box
+                        h4.post-box-title
+                            | Podes também gostar
+                        .item-related
+                            if data.post.image.exists
+                            a(href="#")
+                                img(src=data.post.image.secure_url)
+                            h3
+                                a(href="#")
+                                    | Title Holder
+                .post-comments
+                    a(name="comments")
+                    .post-box
+                        h4.post-box-title
+                            | #{data.post.comments.length} Comments
+                    if !data.post.comments
+                        | Nenhum Comentário
+                    else
+                        .comments
+                            ol
+                                each comment in data.post.comments
+                                    +comment(comment)
+
+                        .reply-box
+                            .holder
+                                form(method='post')
+                                    input(type='hidden', name='action', value='comment.create')
+                                    textarea(placeholder="Introduzir Comentário...", name="content")
+                                    .reply-info
+                                        if user
+                                            input(type="hidden", name="user", value=user.id)
+                                            | A Responder como #{user.name.first}
+                                            button.signout
+                                                | Signout
+                                        else
+                                            | Por favor faça login pra poder comentar
+                                    .captcha-box
+                                        if user
+                                            .g-recaptcha(data-sitekey="6LcIfyYTAAAAAJC-NExjh-x-UnXPYfjo8O-fVQ4T")
+                                            - var disabled = user ? '' : {disabled: 'disabled'}
+                                            button(type="submit")&attributes(disabled)
+                                                | Publicar

@@ -26,7 +26,10 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 
+<<<<<<< HEAD
 	'mongo': 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/',
+=======
+>>>>>>> fb0faea4e21a95ca98a56768f15fe666208606f0
 });
 
 // Load your project's Models
@@ -43,7 +46,13 @@ keystone.set('locals', {
 });
 
 //Load base URL
+<<<<<<< HEAD
 keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://cinturadevenus.pt/' : 'http://localhost:3000/');
+=======
+
+keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'https://cintura-de-venus.herokuapp.com/' : 'http://localhost:3000/');
+
+>>>>>>> fb0faea4e21a95ca98a56768f15fe666208606f0
 keystone.set('siteTitle', 'Cintura de Venus');
 
 // Load your project's Routes
@@ -72,7 +81,8 @@ keystone.set('email tests', require('./routes/emails'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
-	posts: ['posts', 'post-categories'],
+	posts: ['posts', 'post-categories', 'post-comments'],
+	navigation: 'navigations',
 	galleries: 'galleries',
 	enquiries: 'enquiries',
 	users: 'users',

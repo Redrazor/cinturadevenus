@@ -30,6 +30,18 @@ exports.initLocals = function (req, res, next) {
 	next();
 };
 
+/*Gets the default site images needed*/
+
+exports.fetchMainImages = function (req, res, next) {
+
+	var keystone = require('keystone');
+
+	keystone.list('Gallery').model.findOne({ key: 'site-images' }).exec(function (err, result) {
+		res.locals.mainImgs = result;
+		next(err);
+	});
+
+};
 
 /**
 	Fetches and clears the flashMessages before a view is rendered
