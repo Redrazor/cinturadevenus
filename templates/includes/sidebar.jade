@@ -16,7 +16,7 @@ block sidebar
             each cat in data.categories
                 a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
         .widget.shares
-            h2 Segue-nos
+            h2 Segue-me
             .widget-content
                 ul.box-share
                     li: a(href="http://www.facebook.com")

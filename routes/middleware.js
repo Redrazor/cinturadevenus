@@ -8,7 +8,7 @@
  * modules in your project's /lib directory.
  */
 var _ = require('lodash');
-
+var keystone = require('keystone');
 
 /**
 	Initialises the standard view locals
@@ -18,23 +18,34 @@ var _ = require('lodash');
 	or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
-	res.locals.navLinks = [
-		{ label: 'Home', key: 'home', href: '/' },
-		//{ label: 'Blog', key: 'blog', href: '/blog' },
-		//{ label: 'Gallery', key: 'gallery', href: '/gallery' },
-		//{ label: 'Contact', key: 'contact', href: '/contact' },
-	];
-	res.locals.user = req.user;
-	//res.locals.baseUrl = keystone.get('baseUrl');
 
-	next();
+	keystone.list('PostCategory').model.find({ active: true }).exec(function (err, result) {
+		 var navItems = result;
+
+		res.locals.navLinks = [
+			{ label: 'Home', key: 'home', href: '/' },
+			//{ label: 'Blog', key: 'blog', href: '/blog' },
+			//{ label: 'Gallery', key: 'gallery', href: '/gallery' },
+			//{ label: 'Contact', key: 'contact', href: '/contact' },
+		];
+
+		navItems.forEach(function(item){
+			res.locals.navLinks.push({ label: item.name , key: item.key, href: '/'+item.key });
+		});
+
+		res.locals.user = req.user;
+		//res.locals.baseUrl = keystone.get('baseUrl');
+
+		next(err);
+	});
+
+
 };
 
 /*Gets the default site images needed*/
 
 exports.fetchMainImages = function (req, res, next) {
 
-	var keystone = require('keystone');
 
 	keystone.list('Gallery').model.findOne({ key: 'site-images' }).exec(function (err, result) {
 		res.locals.mainImgs = result;
